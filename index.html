@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura Translate — Premium Neural AI Translation Tool</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Floating ambient glow backdrops -->
+  <div class="ambient-glows">
+    <div class="glow-sphere glow-1"></div>
+    <div class="glow-sphere glow-2"></div>
+  </div>
+
+  <div class="page-shell">
+    <!-- Header -->
+    <header class="hero">
+      <div class="logo-group">
+        <div class="logo-icon" aria-hidden="true">
+          <!-- Globe icon -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+            <path d="M2 12h20"></path>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>Aura Translate</h1>
+          <p>Instant Neural AI Translation Engine</p>
+        </div>
+      </div>
+      <div class="theme-badge">
+        <span></span> Secure Core Online
+      </div>
+    </header>
+
+    <!-- Main Card -->
+    <main class="translator-card">
+      <!-- Language Control Bar -->
+      <section class="controls">
+        <div class="select-group">
+          <label for="source-language">Source Language</label>
+          <div class="select-wrapper">
+            <select id="source-language"></select>
+          </div>
+        </div>
+
+        <button id="swap-button" type="button" class="swap-button" aria-label="Swap source and target languages">
+          <svg viewBox="0 0 24 24">
+            <path d="m7 16-4-4 4-4M21 12H3M17 8l4 4-4 4"></path>
+          </svg>
+        </button>
+
+        <div class="select-group">
+          <label for="target-language">Target Language</label>
+          <div class="select-wrapper">
+            <select id="target-language"></select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Text Inputs Workspace -->
+      <section class="text-panel">
+        <!-- Source Input Card -->
+        <div class="field-group">
+          <div class="textarea-header">
+            <span>Input Text</span>
+          </div>
+          <textarea id="source-text" maxlength="5000" placeholder="Type or paste text here (up to 5,000 characters)..."></textarea>
+          <div class="textarea-toolbar">
+            <div class="toolbar-buttons">
+              <!-- Speech Dictation Button -->
+              <button id="dictate-button" type="button" class="toolbar-btn tooltip" data-tooltip="Voice Dictation" aria-label="Dictate text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                  <path d="M19 10v1a7 7 0 0 1-14 0v-1M12 19v3M8 22h8"></path>
+                </svg>
+              </button>
+              <!-- Clear Input Button -->
+              <button id="clear-source-button" type="button" class="toolbar-btn tooltip" data-tooltip="Clear Text" aria-label="Clear source text">
+                <svg viewBox="0 0 24 24">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="textarea-info">
+              <span id="source-char-count">0</span> / 5,000
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Output Card -->
+        <div class="field-group">
+          <div class="textarea-header">
+            <span>Translation</span>
+          </div>
+          <textarea id="translated-text" readonly placeholder="Translation will appear here automatically or upon clicking translate..."></textarea>
+          <div class="textarea-toolbar">
+            <div class="toolbar-buttons">
+              <!-- Speak Button -->
+              <button id="speak-button" type="button" class="toolbar-btn tooltip" data-tooltip="Listen" aria-label="Listen to translation">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+              </button>
+              <!-- Copy Button -->
+              <button id="copy-button" type="button" class="toolbar-btn tooltip" data-tooltip="Copy to Clipboard" aria-label="Copy translated text">
+                <svg viewBox="0 0 24 24">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="textarea-info">
+              <span id="target-char-count">0</span> chars
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Actions -->
+      <section class="action-row">
+        <button id="translate-button" type="button" class="primary-button">
+          <!-- Sparkles icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+          </svg>
+          Translate Text
+        </button>
+        <div class="btn-container">
+          <button id="clear-all-button" type="button" class="secondary-button">
+            <!-- Trash icon -->
+            <svg viewBox="0 0 24 24">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            Clear All
+          </button>
+        </div>
+      </section>
+
+      <!-- Dynamic Status Notification -->
+      <div id="status-message" class="status-message" aria-live="polite"></div>
+    </main>
+
+    <!-- Recent History Section -->
+    <section class="history-section">
+      <div class="history-header">
+        <h2>
+          <!-- Clock/History icon -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Translation History
+        </h2>
+        <button id="clear-history-button" class="clear-history-btn">Clear Logs</button>
+      </div>
+      <div id="history-list" class="history-list">
+        <!-- Dynamically populated -->
+        <div class="empty-history">Your translation logs will appear here as you translate.</div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
